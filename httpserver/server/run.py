@@ -38,6 +38,8 @@ def get_response(request):
                     return result
             else:
                 return "HTTP/1.1 404 Not found\r\n\r\n".encode() + "No such file\n".encode()
+    elif (action == "/test"):
+        return "HTTP/1.1 200 OK\r\n\r\n".encode() + request.encode()
     else:
         return "HTTP/1.1 404 Not found\r\n\r\n".encode() + "Using unknown option\n".encode()
     return "HTTP/1.1 404 Not found\r\n\r\n".encode()
@@ -63,3 +65,4 @@ while 1:
         print ('Stopped')
         server_socket.close()  #Закрываем сокет.
         exit()
+
