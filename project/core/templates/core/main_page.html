@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+
+{% block menu %}
+    <div> <a href="{% url "users:userslist" %}">
+        Пользователи </a>
+    </div>
+{#    <div> <a href="{% url "categories:categories" %}">#}
+{#        Категории постов </a>#}
+{#    </div>#}
+{% endblock %}
+{% block content %}
+    {%  for post in posts %}
+        {%  for blog in blogs %}
+            {% if blog.id == post.blog.id %}
+                <div>
+                    <a href="{% url "posts:post" id=post.id %}"> {{ post.title }}</a>
+                    {{ post.text }}
+                    <a href="{% url "blogs:blog" id=blog.id %}"> {{ blog.title }}</a>
+                 </div>
+            {%  endif %}
+        {%  endfor %}
+    {%  endfor %}
+
+{% endblock %}

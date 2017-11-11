@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+
+{% block title %} <h2>{{ post.title }}</h2> {% endblock %}
+{% block menu %}
+    <div> <a href="/">На главную</a> </div>
+{#    <div> <a href="{% url "blogs:blog" id=b.id %}">Назад к списку постов</a> </div>#}
+{% endblock %}
+{% block content %}
+    {{ post.text }}
+{#    {%  for comm in comments %}#}
+{#        <h3>{{ comm.date }}</h3>#}
+{#        {{ comm.text }}#}
+{#    {%  endfor %}#}
+{% endblock %}
+

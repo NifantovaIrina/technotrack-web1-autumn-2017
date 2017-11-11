@@ -1,0 +1,7 @@
+{% extends "core/base.html" %}
+
+{% block menu %}
+    {%  for post in posts %}
+        <div><a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a></div>
+    {%  endfor %}
+{% endblock %}

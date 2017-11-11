@@ -1,0 +1,21 @@
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css?v=5' %}">
+    {% block title %}
+    <h1> Your world </h1>
+    {% if user.is_anonymous %}
+        <div><a href="{% url "users:signup"%}">Sign up</a></div>
+        <div><a href="{% url "users:login" %}">Log in</a></div>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <div><a href="{% url "users:logout"%}">Log out</a></div>
+    {% endif %}
+ {% endblock %}
+</head>
+
+<body>
+    {% block menu %} {% endblock %}
+    {% block content %} {% endblock %}
+</body>

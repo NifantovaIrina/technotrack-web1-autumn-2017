@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+{% load permissions %}
+
+{% block title %} <h2>{{ blog.title }}</h2>{% endblock %}
+{% block menu %}
+    <div> <a href="{% url "main" %}">Main page</a> </div>
+    {% if user.id == blog.user_id %}
+        <div><a href="{% url "users:updateblog" blog_id=blog.id %}">Edit blog</a></div>
+        <div><a href="{% url "users:newblog" %}">New blog</a></div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {%  for post in posts %}
+        <div><a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a></div>
+    {%  endfor %}
+
+{% endblock %}
+

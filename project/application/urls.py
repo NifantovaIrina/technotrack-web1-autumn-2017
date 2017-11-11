@@ -14,18 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-from core.views import post, main, userPage, postsList
+# from core.views import posts, main, userPage, postsList
+from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
+
+from core.views import main
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # Пост с id
-    url(r'^post/(?P<id>\d+)', post),
-    # Главная страница
-    url(r'^home/$', main),
-    # Страница пользователя с id
-    url(r'^user/id(?P<id>\d+)/$', userPage),
-    # Список постов пользователя id
-    url(r'^posts/id(?P<id>\d+)/$', postsList)
+    url(r'^$', main, name="main"),
+    url(r'^users/', include('users.urls', namespace='users')),
+    url(r'^blogs/', include('blogs.urls', namespace='blogs')),
+    url(r'^comments/', include('comments.urls', namespace='comments')),
+    url(r'^categories/', include('categories.urls', namespace='categories')),
+    url(r'^posts/', include('posts.urls', namespace='posts')),
+
+
 ]
