@@ -1,7 +1,0 @@
-{% extends "core/base.html" %}
-
-{% block menu %}
-    {%  for blog in blogs %}
-        <div><a href="{% url "blogs:blog" id=blog.id %}">{{ blog.title }}</a></div>
-    {%  endfor %}
-{% endblock %}

@@ -1,24 +1,24 @@
-import string
-
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render,  redirect
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from blogs.models import Blog
+from posts.models import Post
 from users.models import User
 from django.contrib.auth import get_user_model
 
 
 def user_page(request, id):
-    user = User.objects.get(id=id)
+    u = User.objects.get(id=id)
     blogs = Blog.objects.filter(user=id)
-    return render(request, 'core/user_page.html', {'user': user, 'blogs': blogs})
+    ids = [blog.id for blog in blogs]
+    posts = Post.objects.filter(blog__in=ids)
+    return render(request, 'core/user_page.html', {'u': u, 'blogs': blogs, 'posts': posts})
 
 
-# Последние 10 зарегистрировавшихся
 def users_list(request):
     users = User.objects.all()[:10]
     return render(request, 'core/users_list.html', {'users': users})
@@ -71,7 +71,7 @@ class UserCreationForm(BaseUserCreationForm):
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
                 login(request, user)
-                return redirect('main')
+                return redirect('user_page', id=user.id)
         else:
             form = UserCreationForm()
-        return render(request, 'core/signup.html', {'form': form})
+            return render(request, 'core/signup.html', {'form': form})

@@ -1,24 +1,36 @@
 {% extends "core/base.html" %}
+{% load static %}
 
-{% block menu %}
-    <div> <a href="{% url "users:userslist" %}">
-        Пользователи </a>
-    </div>
-{#    <div> <a href="{% url "categories:categories" %}">#}
-{#        Категории постов </a>#}
-{#    </div>#}
-{% endblock %}
-{% block content %}
-    {%  for post in posts %}
-        {%  for blog in blogs %}
-            {% if blog.id == post.blog.id %}
-                <div>
-                    <a href="{% url "posts:post" id=post.id %}"> {{ post.title }}</a>
-                    {{ post.text }}
-                    <a href="{% url "blogs:blog" id=blog.id %}"> {{ blog.title }}</a>
-                 </div>
-            {%  endif %}
-        {%  endfor %}
-    {%  endfor %}
+<body>
 
-{% endblock %}
+{#    {% block content %}#}
+{#        <div class="content">#}
+{#            {% for u in users %}#}
+{#                <div class="row">#}
+{#                    <div>#}
+{#                        <a href="{% url "users:userpage" id=u.id %}"> <h1> {{ u.username }} </h1></a>#}
+{#                    </div>#}
+{#                    <div class="row-2">#}
+{#                        {%  for blog in blogs %}#}
+{#                            {% if blog.user_id == u.id %}#}
+{#                                    <div>#}
+{#                                        <a href="{% url "blogs:blog" id=blog.id %}"> <h2> {{ blog.title }} </h2></a>#}
+{#                                    </div>#}
+{#                                   <div class="row-3">#}
+{#                                        {% for post in posts %}#}
+{#                                            {% if blog.id == post.blog.id %}#}
+{#                                                <a href="{% url "posts:post" id=post.id %}"> <h2> {{ post.title }} </h2></a>#}
+{#                                                {{ post.text| linebreaks | truncatewords:50 }}#}
+{#                                            {%  endif %}#}
+{#                                        {%  endfor %}#}
+{#                                   </div>#}
+{#                            {% endif %}#}
+{#                        {%  endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% endblock %}#}
+</body>
+

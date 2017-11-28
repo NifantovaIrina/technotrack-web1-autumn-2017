@@ -1,9 +1,11 @@
 {% extends "core/base.html" %}
 
 {% block content %}
-    <form action="" method="post">
-        {{ form }}
-        {% csrf_token %}
-        <input type="submit" value="Update">
-    </form>
+    <div class="col-1">
+        <form action="" method="post">
+            {{ form }}
+            {% csrf_token %}
+            <input type="submit" value="Update">
+        </form>
+    </div>
 {% endblock %}

@@ -1,19 +1,22 @@
 {% extends "core/base.html" %}
-{% load permissions %}
 
-{% block title %} <h2>{{ blog.title }}</h2>{% endblock %}
+<body>
 {% block menu %}
-    <div> <a href="{% url "main" %}">Main page</a> </div>
+    <div> <a href="{% url "users:userpage" id=u.id %}">{{ u.username }}</a> </div>
     {% if user.id == blog.user_id %}
         <div><a href="{% url "users:updateblog" blog_id=blog.id %}">Edit blog</a></div>
-        <div><a href="{% url "users:newblog" %}">New blog</a></div>
     {% endif %}
 {% endblock %}
 
 {% block content %}
+    <h2>{{ blog.title }}</h2>
+    {% if user.id == blog.user_id %}
+        <div><a href="{% url "blogs:newpost" id=blog.id %}">New post</a></div>
+    {% endif %}
     {%  for post in posts %}
         <div><a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a></div>
     {%  endfor %}
 
 {% endblock %}
 
+</body>

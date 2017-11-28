@@ -1,0 +1,150 @@
+.navbar {
+    color: antiquewhite;
+    position: fixed;
+    font-size: 12px;
+    background: #16091c;
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+}
+
+.col-1-l {
+    width: 15%;
+    float: left;
+    min-width: 90px;
+}
+
+.navbar .col-1-l {
+    width: 10%;
+    min-width: 70px;
+}
+
+.col-1-r {
+    width: 10%;
+    float: right;
+    min-width: 70px;
+    alignment: right;
+}
+
+.col-2-l {
+    width: 40%;
+    float: left;
+    min-width: 80px;
+}
+
+body {
+    background-image: url("back.jpg");
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    position: absolute;
+}
+
+.content {
+    margin-top: 70px;
+    height:100vh;
+}
+
+h2 {
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+h3 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+h4 {
+    font-size: 18px;
+    margin-bottom: 0;
+    color: grey;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.margined {
+    margin-top: 10px;
+}
+
+.center {
+    background-color: honeydew;
+    width: 70%;
+    margin-left: 15%;
+    height:100vh;
+    min-height:100%;
+    font-size: 25px;
+    color: #281c2b;
+}
+
+.menu {
+    width: 20%;
+    float: left;
+    /*min-width: 150px;*/
+    border-right-color: #16091c;
+}
+
+.sub-cont {
+    width: 80%;
+    float: left;
+    margin-left: 20%;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.sub-cont .col-1-l {
+    width: 20%;
+}
+
+.sub-cont .col-1-r {
+    width: 20%;
+}
+
+a:link {
+    color: #254d8c;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #254d8c;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #8a5d96;
+    text-decoration: underline;
+}
+
+.navbar a:link {
+    color: honeydew;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.navbar a:hover {
+    color: palevioletred;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.navbar a:visited {
+    color: honeydew;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.row {
+    float: left;
+    width: 100%;
+    margin-left: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+}

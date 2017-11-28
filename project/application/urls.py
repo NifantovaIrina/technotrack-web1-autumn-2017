@@ -19,7 +19,9 @@ from django.contrib import admin
 # from core.views import posts, main, userPage, postsList
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
+from django.template.context_processors import static
 
+from application import settings
 from core.views import main
 
 urlpatterns = [
@@ -30,6 +32,4 @@ urlpatterns = [
     url(r'^comments/', include('comments.urls', namespace='comments')),
     url(r'^categories/', include('categories.urls', namespace='categories')),
     url(r'^posts/', include('posts.urls', namespace='posts')),
-
-
-]
+]# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

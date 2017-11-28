@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
+from django.urls import reverse_lazy
 
 from users import views
 from users.views import user_page, users_list

@@ -4,12 +4,14 @@ from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from blogs.models import Blog
 from posts.models import Post
+from users.models import User
 
 
 def blog(request, id):
     blog = Blog.objects.get(id=id)
     posts = Post.objects.filter(blog=id)
-    return render(request, 'core/blog.html', {'blog': blog, 'posts': posts})
+    user = User.objects.get(id=blog.user_id)
+    return render(request, 'core/blog.html', {'blog': blog, 'posts': posts, 'u': user})
 
 
 def blogs(request):
@@ -39,7 +41,8 @@ class NewPost(CreateView):
         return super(NewPost, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('posts:post', kwargs={'id': self.object.id})
+        blog = Blog.objects.get(id=self.object.blog_id)
+        return reverse('blogs:blog', kwargs={'id': blog.id})
 
     def form_valid(self, form):
         # form.instance.author = self.request.user

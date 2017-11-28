@@ -1,13 +1,58 @@
 {% extends "core/base.html" %}
 
-{% block title %} <h2>{{ user.username }}</h2>{% endblock %}
-{% block menu %}
-    <div> <a href="/">На главную</a> </div>
-{% endblock %}
-
 {% block content %}
-    {%  for b in blogs %}
-        <div><a href="{% url "blogs:blog" id=b.id %}">{{ b.title }}</a></div>
+    <body>
+    <div class="content">
+        <div class="center">
+                <div class="menu">
+                    {% if u.id == user.id%}
+                        <div class="row">
+                            <a href="{% url "users:newblog" %}">New blog</a>
+                        </div>
+                    {% endif %}
 
-    {%  endfor %}
+                    {% for blog in blogs %}
+                        <div class="row">
+                            <a href="{% url "blogs:blog" id=blog.id %}">{{ blog.title }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="sub-cont">
+                    {%  for blog in blogs %}
+                        {%  for post in posts %}
+                            {% if post.blog_id == blog.id %}
+                                <div class="row">
+                                    <div class="col-1-l">
+                                        <h2>
+                                            <a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a>
+                                        </h2>
+                                    </div>
+                                    <div class="col-1-l">
+                                        <h4>
+                                            <a href="{% url "blogs:updatepost" id=post.id %}">Edit</a>
+                                        </h4>
+                                    </div>
+                                    <div class="col-1-l">
+                                        <h4>
+                                            <a href="{% url "blogs:blog" id=blog.id %}">{{ blog.title }}</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <h4>
+                                            {{ post.date_create }}
+                                        </h4>
+                                </div>
+                                <div class="row">
+                                    {{ post.text| linebreaks | truncatewords:50 }}
+                                </div>
+                            {%  endif %}
+                        {%  endfor %}
+                    {%  endfor %}
+
+                </div>
+        </div>
+    </div>
+    </body>
 {%  endblock %}

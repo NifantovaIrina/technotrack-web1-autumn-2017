@@ -1,8 +1,15 @@
 {% extends "core/base.html" %}
 
-{% block menu %}
-    <div><a href="{% url "users:userpage" id=request.user.id %}">My blogs</a></div>
-    {%  for user in users %}
-        <div><a href="{% url "users:userpage" id=user.id %}">{{ user.username }}</a></div>
-    {%  endfor %}
+
+{% block content %}
+    <div class="content">
+        <div class="center">
+            {% for u in users %}
+                <div class="row">
+                    <a href="{% url "users:userpage" id=user.id %}">{{ u.username }} </a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

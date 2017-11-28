@@ -13,7 +13,9 @@ from users.models import User
 
 
 def main(request):
-    posts = Post.objects.order_by("-id").all()[:10]
-    ids = [post.blog.id for post in posts]
-    blogs = Blog.objects.filter(id__in=ids)
-    return render(request, 'core/main_page.html', {'posts': posts, 'blogs': blogs})
+    posts = Post.objects.all().order_by("-date_create")[:10]
+    ids_posts = [post.id for post in posts]
+    blogs = Blog.objects.filter(id__in=ids_posts)
+    ids_blogs = [blog.id for blog in blogs]
+    users = User.objects.filter(id__in=ids_blogs)
+    return render(request, 'core/base.html', {'posts': posts, 'blogs': blogs, 'users': users})
