@@ -13,3 +13,4 @@ class Post(models.Model):
     #user = models.ForeignKey(settings.AUTH_USER_MODEL)
     # categories = models.ManyToManyField(Category)
     likes = models.IntegerField(default=0)
+    # comments_num = models.IntegerField(default=0)

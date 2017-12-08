@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <body>
+    <div class="content">
+    <div class="center">
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="row">
+                    <form action=""
+                </div>
+                <div class="row">
+                    <div class="col-1-l">{{ blog.title }} </div>
+                    <div class="col-1-r">{{ blog.date_update }}</div>
+                </div>
+                <div class="row">
+                    {{ blog.text }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    </body>
+{% endblock %}

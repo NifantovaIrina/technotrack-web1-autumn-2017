@@ -1,12 +1,6 @@
 {% extends "core/base.html" %}
-
-{#    {% block menu %}#}
-{#        <div class="menu">#}
-{#            <h2>{{ post.title }}</h2>#}
-{#                <div> <a href="{% url "blogs:blog" id=blog.id %}">Posts in this blog</a> </div>#}
-{#        </div>#}
-{#    {% endblock %}#}
-
+{#{% load comments %}#}
+{% load widget_tweaks %}
 
 {% block content %}
     <body>
@@ -16,13 +10,31 @@
                     <h3>{{ post.title }}</h3>
                     {{ post.text| linebreaks }}
                 </div>
-    {#            <div class="col-1">#}
-    {#                {%  for comm in comments %}#}
-    {#                    <h3>{{ comm.date }}</h3>#}
-    {#                    {{ comm.text }}#}
-    {#                {%  endfor %}#}
-    {#            </div>#}
-    {#        </div>#}
+
+                <div class="row">
+                    <h3> {{ num }} comments</h3>
+                </div>
+
+
+                {% if user.is_authenticated %}
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        Text:
+                        {{ form.text| add_class:"comment"}}
+                        <input class="buttonComment" type="submit" value="Leave a comment">
+                    </form>
+                {% endif %}
+
+
+                {% for comment in comments %}
+                    <div class="row">
+                        <div class="col-2-l"> <h4>{{ comment.date_create }}</h4> </div>
+                    </div>
+                    <div class="col-1-l">
+                        {{ comment.text }}
+                    </div>
+                {% endfor %}
+
             </div>
         </div>
     </body>

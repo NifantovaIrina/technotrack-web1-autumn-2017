@@ -9,7 +9,7 @@ from blogs.models import Blog
 from posts.models import Post
 from users.models import User
 from django.contrib.auth import get_user_model
-
+from django.contrib.auth.forms import AuthenticationForm as BaseAuthenticationForm
 
 def user_page(request, id):
     u = User.objects.get(id=id)
@@ -57,10 +57,42 @@ class NewBlog(CreateView):
         return super(NewBlog, self).form_valid(form)
 
 
+class AuthenticationForm(BaseAuthenticationForm):
+    class Meta:
+        model = get_user_model()
+        fields = "username", "password1", "password2"
+
+    def label_tag(self, contents=None, attrs=None):
+        pass
+
+    def as_widget(self, widget=None, attrs=None, only_initial=False):
+        pass
+
+    def login(request):
+        if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                username = form.cleaned_data.get('username')
+                raw_password = form.cleaned_data.get('password1')
+                user = authenticate(username=username, password=raw_password)
+                login(request, user)
+                return redirect('user_page', id=user.id)
+        else:
+            form = UserCreationForm()
+            return render(request, 'core/login.html', {'form': form})
+
+
 class UserCreationForm(BaseUserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = "username", "first_name", "last_name", "password1", "password2", "email"
+        fields = "username", "password1", "password2"
+
+    def label_tag(self, contents=None, attrs=None):
+        pass
+
+    def as_widget(self, widget=None, attrs=None, only_initial=False):
+        pass
 
     def signup(request):
         if request.method == 'POST':

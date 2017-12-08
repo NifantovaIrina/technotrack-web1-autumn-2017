@@ -1,11 +1,16 @@
 {% extends "core/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-    <div class="col-1">
+    <body>
+    <div class="content">
+    <div class="center">
         <form action="" method="post" enctype="multipart/form-data">
-            {{ form }}
+            {{ form | add_class:"inputForm"}}
             {% csrf_token %}
-            <input type="submit" value="Create">
+            <input class="buttonLogin" type="submit" value="Create">
         </form>
     </div>
+    </div>
+    </body>
 {% endblock %}

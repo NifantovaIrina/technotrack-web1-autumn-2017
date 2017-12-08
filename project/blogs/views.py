@@ -1,10 +1,12 @@
+from django.forms import forms
 from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.views.generic import UpdateView
 from blogs.models import Blog
 from posts.models import Post
 from users.models import User
+
 
 
 def blog(request, id):
@@ -13,6 +15,19 @@ def blog(request, id):
     user = User.objects.get(id=blog.user_id)
     return render(request, 'core/blog.html', {'blog': blog, 'posts': posts, 'u': user})
 
+
+class BlogsListForm(forms.Form):
+    order_by = forms.CharField()
+    search = forms.CharField()
+#
+#
+# class BlogsList(ListView):
+#     template_name = 'core/blogs_list.html'
+#     context_object_name = 'blogs_list'
+#     model = Blog
+#
+#     def get_queryset(request):
+#         form =
 
 def blogs(request):
     blogs = Blog.objects.all().order_by('-id')[:10]

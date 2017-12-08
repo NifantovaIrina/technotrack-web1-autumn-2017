@@ -1,9 +1,18 @@
 {% extends "core/base.html" %}
 
-{% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Login">
-    </form>
+{% block menu %}
+    <body>
+        <div class="content">
+        <div class="center">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        </div>
+    </body>
 {% endblock %}
+{#{% block content %}#}
+{#    #}
+{#{% endblock %}#}

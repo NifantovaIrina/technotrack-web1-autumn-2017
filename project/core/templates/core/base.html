@@ -1,7 +1,8 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <head>
-    <link href="{%  static "core/base.css" %}?v28" rel="stylesheet">
+    <link href="{%  static "core/base.css" %}?v29" rel="stylesheet">
 </head>
 
 <body>
@@ -16,6 +17,10 @@
                 <div class="col-1-l">
                     <a href="{% url "users:userslist" %}">Users</a>
                 </div>
+
+                 <div class="col-1-l">
+                    <a href="{% url "blogs:blogs" %}">Blogs</a>
+                 </div>
 
                 {% if user.is_anonymous %}
                     <div class="col-1-r"> <a href="{% url "users:signup"%}">Sign up</a></div>

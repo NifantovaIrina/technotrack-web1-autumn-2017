@@ -1,9 +1,10 @@
 {% extends "core/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
     <div class="col-1">
         <form action="" method="post">
-            {{ form }}
+            {{ form | add_class:"inputForm" }}
             {% csrf_token %}
             <input type="submit" value="Update">
         </form>

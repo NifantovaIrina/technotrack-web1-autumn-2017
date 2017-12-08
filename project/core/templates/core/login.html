@@ -1,13 +1,22 @@
 {% extends "core/base.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
-    <div class="col-1">
-        <form action="{%  url 'users:login' %}" method="post">
-            {% csrf_token %}
-            {{ form }}
-            {% if form.errors %} {{ form.errors }} {% endif %}
-            <input type="submit" value="Login"/>
-            <input type="hidden" value="{{ next }}"/>
-        </form>
+    <body>
+    <div class="content">
+    <div class="center">
+            <form action="{%  url 'users:login' %}" method="post" class="regform">
+                {% csrf_token %}
+                <div class="col-2-l">
+                    {{ form.as_p }}
+                </div>
+                {% if form.errors %} {{ form.errors }} {% endif %}
+                <div class="col-1-l">
+                    <input type="submit" class="buttonLogin" value="Login"/>
+                </div>
+                <input type="hidden" value="{{ next }}"/>
+            </form>
     </div>
+    </div>
+    </body>
 {% endblock %}

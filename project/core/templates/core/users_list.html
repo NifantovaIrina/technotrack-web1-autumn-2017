@@ -6,7 +6,7 @@
         <div class="center">
             {% for u in users %}
                 <div class="row">
-                    <a href="{% url "users:userpage" id=user.id %}">{{ u.username }} </a>
+                    <a href="{% url "users:userpage" id=u.id %}">{{ u.username }} </a>
                 </div>
             {% endfor %}
             </div>

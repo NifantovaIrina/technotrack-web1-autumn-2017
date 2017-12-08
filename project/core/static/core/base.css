@@ -9,15 +9,21 @@
     padding: 0;
 }
 
+.html {
+    padding: 0;
+    border: none;
+    margin: 0;
+}
+
 .col-1-l {
     width: 15%;
     float: left;
-    min-width: 90px;
+    min-width: 95px;
 }
 
 .navbar .col-1-l {
-    width: 10%;
-    min-width: 70px;
+    width: 12%;
+    min-width: 110px;
 }
 
 .col-1-r {
@@ -30,7 +36,7 @@
 .col-2-l {
     width: 40%;
     float: left;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 body {
@@ -39,12 +45,16 @@ body {
     padding: 0;
     margin: 0;
     border: none;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .content {
-    margin-top: 70px;
-    height:100vh;
+    /*background-image: url("back.jpg");*/
+    padding-top: 70px;
+    float: left;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 0;
 }
 
 h2 {
@@ -57,9 +67,9 @@ h2 {
 
 h3 {
     font-size: 22px;
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 0;
-    padding-top: 0;
+    padding-top: 12px;
     padding-bottom: 0;
 }
 
@@ -75,12 +85,20 @@ h4 {
     margin-top: 10px;
 }
 
+.comment {
+    height: 30px;
+
+}
+
+.buttonComment {
+    padding: 7px 20px;
+}
 .center {
     background-color: honeydew;
     width: 70%;
+    /*margin: auto;*/
     margin-left: 15%;
-    height:100vh;
-    min-height:100%;
+    float: inherit;
     font-size: 25px;
     color: #281c2b;
 }
@@ -88,16 +106,29 @@ h4 {
 .menu {
     width: 20%;
     float: left;
-    /*min-width: 150px;*/
+    min-width: 150px;
     border-right-color: #16091c;
+}
+
+input[type=text] {
+    border: 3px solid #555;
+}
+
+input[type=submit] {
+
+}
+
+.buttonLogin {
+    padding: 10px 24px;
 }
 
 .sub-cont {
     width: 80%;
-    float: left;
+    /*float: left;*/
     margin-left: 20%;
     margin-top: 0;
     padding-top: 0;
+    min-width: 200px;
 }
 
 .sub-cont .col-1-l {
@@ -147,4 +178,8 @@ a:hover {
     margin-left: 10px;
     padding-top: 0;
     padding-bottom: 0;
+}
+
+.inputForm {
+
 }

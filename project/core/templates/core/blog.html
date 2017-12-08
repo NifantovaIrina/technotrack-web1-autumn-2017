@@ -1,22 +1,42 @@
 {% extends "core/base.html" %}
 
-<body>
-{% block menu %}
-    <div> <a href="{% url "users:userpage" id=u.id %}">{{ u.username }}</a> </div>
-    {% if user.id == blog.user_id %}
-        <div><a href="{% url "users:updateblog" blog_id=blog.id %}">Edit blog</a></div>
-    {% endif %}
-{% endblock %}
-
 {% block content %}
-    <h2>{{ blog.title }}</h2>
-    {% if user.id == blog.user_id %}
-        <div><a href="{% url "blogs:newpost" id=blog.id %}">New post</a></div>
-    {% endif %}
-    {%  for post in posts %}
-        <div><a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a></div>
-    {%  endfor %}
-
+    <body>
+    <div class="content">
+    <div class="center">
+        <div class="row">
+            <div class="col-1-l">
+                <h2>{{ blog.title }}</h2>
+            </div>
+            <div class="col-1-l">
+                <h3><a href="{% url "users:userpage" id=u.id %}">{{ u.username }} </a></h3>
+            </div>
+            <div class="col-2-l">
+                <h4>{{ blog.date_create }}</h4>
+            </div>
+        </div>
+        {% if user.id == blog.user_id %}
+            <div class="row">
+                <div class="col-1-l">
+                <a href="{% url "blogs:newpost" id=blog.id %}">New post</a>
+                </div>
+            </div>
+        {% endif %}
+        {%  for post in posts %}
+            <div class="row">
+                <div class="col-1-l">
+                    <h3> <a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a> </h3>
+                </div>
+                <div class="col-2-l">
+                    <h4>{{ post.date_create }}</h4>
+                </div>
+            </div>
+            <div class="row">
+                {{ post.text | linebreaks }}
+            </div>
+        {%  endfor %}
+    </div>
+    </div>
+    </body>
 {% endblock %}
 
-</body>
