@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from blogs.models import Blog
+from categories.models import Category
 
 
 class Post(models.Model):
@@ -10,7 +11,5 @@ class Post(models.Model):
     date_create = models.DateTimeField(auto_now_add=True)
     date_update = models.DateTimeField(auto_now=True)
     blog = models.ForeignKey(Blog, default=None)
-    #user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    # categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, blank=True)
     likes = models.IntegerField(default=0)
-    # comments_num = models.IntegerField(default=0)

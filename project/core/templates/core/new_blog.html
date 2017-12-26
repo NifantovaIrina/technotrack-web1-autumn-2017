@@ -6,7 +6,7 @@
     <div class="content">
     <div class="center">
         <form action="" method="post" enctype="multipart/form-data">
-            {{ form | add_class:"inputForm"}}
+            {{ form }}
             {% csrf_token %}
             <input class="buttonLogin" type="submit" value="Create">
         </form>

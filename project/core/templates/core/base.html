@@ -22,6 +22,8 @@
                     <a href="{% url "blogs:blogs" %}">Blogs</a>
                  </div>
 
+                  <div class="col-1-l"> <a href="{% url "categories:categories"%}">Categories</a></div>
+
                 {% if user.is_anonymous %}
                     <div class="col-1-r"> <a href="{% url "users:signup"%}">Sign up</a></div>
                     <div class="col-1-r"> <a href="{% url "users:login" %}">Log in</a></div>

@@ -6,15 +6,15 @@
     <div class="center">
         <div class="row">
             {% for blog in blogs %}
+{#                <div class="row">#}
+{#                    <form action=""#}
+{#                </div>#}
                 <div class="row">
-                    <form action=""
+                    <div class="col-2-l"><h2> <a href="{% url "blogs:blog" id=blog.id %}">{{ blog.title }}</a> </h2></div>
+                    <div class="col-2-l"><h4> {{ blog.date_update }} </h4></div>
                 </div>
                 <div class="row">
-                    <div class="col-1-l">{{ blog.title }} </div>
-                    <div class="col-1-r">{{ blog.date_update }}</div>
-                </div>
-                <div class="row">
-                    {{ blog.text }}
+                    {{ blog.description }}
                 </div>
             {% endfor %}
         </div>

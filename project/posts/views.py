@@ -1,13 +1,4 @@
-import datetime
-from audioop import reverse
-
-from django.forms import ModelForm, forms
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
-
-from blogs.models import Blog
 from comments.models import Comment
 from posts.form import NewComment
 from posts.models import Post
@@ -15,7 +6,7 @@ from posts.models import Post
 
 def post(request, id):
     post = Post.objects.get(id=id)
-    comments = Comment.objects.filter(post=id)
+    comments = Comment.objects.filter(post=id).order_by("-date_create")
     if request.method == "POST":
         form = NewComment(request.POST)
         form.instance.user_id = request.user.id

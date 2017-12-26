@@ -103,7 +103,7 @@ class UserCreationForm(BaseUserCreationForm):
                 raw_password = form.cleaned_data.get('password1')
                 user = authenticate(username=username, password=raw_password)
                 login(request, user)
-                return redirect('user_page', id=user.id)
+                return redirect('users:userpage', id=user.id)
         else:
             form = UserCreationForm()
-            return render(request, 'core/signup.html', {'form': form})
+        return render(request, 'core/signup.html', {'form': form})
