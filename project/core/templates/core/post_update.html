@@ -2,11 +2,17 @@
 {% load widget_tweaks %}
 
 {% block content %}
-    <div class="col-1">
-        <form action="" method="post">
-            {{ form | add_class:"inputForm" }}
-            {% csrf_token %}
-            <input type="submit" value="Update">
-        </form>
+    <body>
+    <div class="content">
+    <div class="center">
+        <div class="col-1">
+            <form action="" method="post">
+                {{ form }}
+                {% csrf_token %}
+                <input type="submit" value="Update">
+            </form>
+        </div>
     </div>
+    </div>
+    </body>
 {% endblock %}

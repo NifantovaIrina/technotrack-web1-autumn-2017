@@ -6,17 +6,21 @@
     <div class="center">
         <div class="row">
             <div class="col-2-l">
-                <h3>{{ blog.title }}</h3>
+                <h2>{{ blog.title }}</h2>
             </div>
-        </div>
-        <div class="row">
-             <div class="col-1-l">
-{#                 {{ u.username }}#}
-                <h3><a href="{% url "users:userpage" id=u.id %}">{{ u.username }} </a></h3>
+            <div class="col-1-l">
+                <h4><a href="{% url "users:updateblog" blog_id=blog.id %}">Edit</a></h4>
             </div>
             <div class="col-2-l">
                 <h4>{{ blog.date_create }}</h4>
             </div>
+
+        </div>
+        <div class="row">
+             <div class="col-1-l">
+                <h3><a href="{% url "users:userpage" id=u.id %}">{{ u.username }} </a></h3>
+            </div>
+
         </div>
         {% if user.id == blog.user_id %}
             <div class="row">
@@ -30,6 +34,14 @@
                 <div class="col-1-l">
                     <h3> <a href="{% url "posts:post" id=post.id %}">{{ post.title }}</a> </h3>
                 </div>
+                {% if request.user.id == user.id %}
+                    <button class="edit">
+                        Edit
+{#                        <h4> <a href="{% url "blogs:updatepost" id=post.id %}">Edit</a> </h4>#}
+                    </button>
+                    <div class="dialog">hello</div>
+
+                {% endif %}
                 <div class="col-2-l">
                     <h4>{{ post.date_create }}</h4>
                 </div>
@@ -40,6 +52,8 @@
         {%  endfor %}
     </div>
     </div>
+
     </body>
 {% endblock %}
-
+{% load static %}
+<script type="text/javascript" src="{% static "core/base.js" %}" ></script>

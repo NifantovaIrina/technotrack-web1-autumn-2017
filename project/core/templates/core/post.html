@@ -1,5 +1,4 @@
 {% extends "core/base.html" %}
-{#{% load comments %}#}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -7,7 +6,10 @@
         <div class="content">
             <div class="center">
                 <div class="row">
-                    <h3>{{ post.title }}</h3>
+                    <div class="col-1-l"> <h3>{{ post.title }}</h3></div>
+                    <h4><div class="col-1-l">{{ likes }} likes </div></h4>
+                </div>
+                <div class="row">
                     {{ post.text| linebreaks }}
                 </div>
 

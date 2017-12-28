@@ -14,8 +14,8 @@ from users.models import User
 
 def main(request):
     posts = Post.objects.all().order_by("-date_create")[:10]
-    ids_posts = [post.id for post in posts]
+    ids_posts = [post.blog_id for post in posts]
     blogs = Blog.objects.filter(id__in=ids_posts)
-    ids_blogs = [blog.id for blog in blogs]
+    ids_blogs = [blog.user_id for blog in blogs]
     users = User.objects.filter(id__in=ids_blogs)
     return render(request, 'core/base.html', {'posts': posts, 'blogs': blogs, 'users': users})

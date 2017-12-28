@@ -2,81 +2,83 @@
 {% load widget_tweaks %}
 
 <head>
-    <link href="{%  static "core/base.css" %}?v29" rel="stylesheet">
+    <link href="{%  static "core/base.css" %}?v30" rel="stylesheet">
+    <script type="text/javascript" src="{% static "core/base.js" %}" ></script>
+{#    <script#}
+{#  src="https://code.jquery.com/jquery-3.2.1.js"#}
+{#  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="#}
+{#  crossorigin="anonymous"></script>#}
 </head>
 
 <body>
-{% block title %}
-            <div class="navbar">
-                <div class="col-1-l"> <a href="{% url "main" %}">Main page</a> </div>
-                 {% if user.is_authenticated %}
-                     <div class="col-1-l">
-                        <a href="{% url "users:userpage" id=user.id %}">My page</a>
-                    </div>
-                {% endif %}
-                <div class="col-1-l">
-                    <a href="{% url "users:userslist" %}">Users</a>
-                </div>
+{#{% block title %}#}
+{#            <div class="navbar">#}
+{#                <div class="col-1-l"> <a href="{% url "main" %}">Main page</a> </div>#}
+{#                 {% if user.is_authenticated %}#}
+{#                     <div class="col-1-l">#}
+{#                        <a href="{% url "users:userpage" id=user.id %}">My page</a>#}
+{#                    </div>#}
+{#                {% endif %}#}
+{#                <div class="col-1-l">#}
+{#                    <a href="{% url "users:userslist" %}">Users</a>#}
+{#                </div>#}
+{##}
+{#                 <div class="col-1-l">#}
+{#                    <a href="{% url "blogs:blogs" %}">Blogs</a>#}
+{#                 </div>#}
+{##}
+{#                  <div class="col-1-l"> <a href="{% url "categories:categories"%}">Categories</a></div>#}
+{##}
+{#                {% if user.is_anonymous %}#}
+{#                    <div class="col-1-r"> <a href="{% url "users:signup"%}">Sign up</a></div>#}
+{#                    <div class="col-1-r"> <a href="{% url "users:login" %}">Log in</a></div>#}
+{#                {% endif %}#}
+{#                {% if user.is_authenticated %}#}
+{#                      <div class="col-1-r"> <a href="{% url "users:logout"%}">Log out</a></div>#}
+{#                {% endif %}#}
+{#            </div>#}
+{##}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <div class="content">#}
+{#        <div class="center">#}
+{#            {% for post in posts %}#}
+{#                <div class="row">#}
+{#                    <div class="col-1-l">#}
+{#                       <h2><a href="{%  url "posts:post" id=post.id %}">{{ post.title }}</a></h2>#}
+{#                    </div>#}
+{#                    <div class="col-2-l">#}
+{#                        <h4>{{ post.date_create }}</h4>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    {% for b in blogs %}#}
+{#                        {% if b.id == post.blog_id %}#}
+{#                            <div class="col-1-l">#}
+{#                                <h4><a href="{%  url "blogs:blog" id=b.id %}">{{ b.title }}</a></h4>#}
+{#                            </div>#}
+{#                            <div class="col-1-l">#}
+{#                                {% for u in users %}#}
+{#                                    {% if u.id == b.user_id %}#}
+{#                                            <h4><a href="{%  url "users:userpage" id=u.id %}">{{ u.username }}</a></h4>#}
+{#                                    {% endif %}#}
+{#                                {% endfor %}#}
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                        {% endfor %}#}
+{#                </div>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    {{ post.text }}#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+<button class="edit">Edit</button>
+<div class="dialog">hello</div>
 
-                 <div class="col-1-l">
-                    <a href="{% url "blogs:blogs" %}">Blogs</a>
-                 </div>
 
-                  <div class="col-1-l"> <a href="{% url "categories:categories"%}">Categories</a></div>
-
-                {% if user.is_anonymous %}
-                    <div class="col-1-r"> <a href="{% url "users:signup"%}">Sign up</a></div>
-                    <div class="col-1-r"> <a href="{% url "users:login" %}">Log in</a></div>
-                {% endif %}
-                {% if user.is_authenticated %}
-                      <div class="col-1-r"> <a href="{% url "users:logout"%}">Log out</a></div>
-                {% endif %}
-            </div>
-
-{% endblock %}
-{%  block content %}
-        <div class="content">
-            <div class="center">
-                    {%  for post in posts %}
-                        {% for blog in blogs %}
-                            {%  if post.blog_id == blog.id %}
-                                {% for u in users %}
-                                    {% if u.id == blog.user_id %}
-                                        <div class="row">
-                                            <div class="col-1-l">
-                                                <h2>
-                                                    <a href="{%  url "posts:post" id=post.id %}">{{ post.title }}</a>
-                                                </h2>
-                                            </div>
-                                            <div class="col-2-l">
-                                                <div class="margined">
-                                                    <h4>
-                                                        {{ post.date_create }}
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-1-l">
-                                                <h3>
-                                                    <a href="{%  url "blogs:blog" id=blog.id %}">{{ blog.title }}</a>
-                                                </h3>
-                                            </div>
-                                            <div class="col-1-l">
-                                                <h3>
-                                                    <a href="{%  url "users:userpage" id=u.id %}">{{ u.username }}</a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            {{ post.text }}
-                                        </div>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-            </div>
-        </div>
-{% endblock %}
+</div>
 </body>

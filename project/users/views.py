@@ -25,7 +25,7 @@ def users_list(request):
 
 
 class BlogUpdate(UpdateView):
-    template_name = 'core/post_update.html'
+    template_name = 'core/blog_update.html'
     model = Blog
     fields = 'title', 'description'
     pk_url_kwarg = 'blog_id'

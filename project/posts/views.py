@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from comments.models import Comment
+from likes.models import Like
 from posts.form import NewComment
 from posts.models import Post
 
@@ -15,8 +16,10 @@ def post(request, id):
             form.save()
     form = NewComment()
     comments_num = comments.count()
+    likes = Like.objects.filter(post=post).count()
+    print(likes)
     return render(request, 'core/post.html', {'post': post, 'comments': comments, 'num': comments_num,
-                                              'form': form})
+                                              'form': form, 'likes': likes})
 
 
 def posts_user(request, id):
