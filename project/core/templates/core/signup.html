@@ -1,5 +1,4 @@
 {% extends 'core/base.html' %}
-{% load widget_tweaks %}
 
 {% block content %}
     <body>
@@ -8,7 +7,7 @@
         <h2>Sign up</h2>
         <form method="post" class="signupform">
                 {% csrf_token %}
-                {{ form| add_class:"inputForm"}}
+                {{ form }}
                 <button class="buttonLogin" type="submit">Sign up</button>
         </form>
 
